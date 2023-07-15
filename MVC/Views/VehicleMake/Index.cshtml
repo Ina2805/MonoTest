@@ -1,0 +1,87 @@
+@model VehicleMakeListViewModel
+
+<h1>Vehicle Makes</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <a href="@Url.Action("Create")" class="btn btn-primary">Create</a>
+        </div>
+        <div class="col">
+            <form method="get">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2" name="searchString" value="@Model.SearchString">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- VehicleMakes list -->
+<table class="table">
+    <!-- Table headers -->
+    <thead>
+    <tr>
+        <th>
+            <a href="@Url.Action("Index", new { page = Model.CurrentPage, searchString = Model.SearchString, sortOrder = "id_asc" })">Id</a>
+        </th>
+        <th>
+            <a href="@Url.Action("Index", new { page = Model.CurrentPage, searchString = Model.SearchString, sortOrder = "name_asc" })">Name</a>
+        </th>
+        <th>
+            <a href="@Url.Action("Index", new { page = Model.CurrentPage, searchString = Model.SearchString, sortOrder = "abrv_asc" })">Abrv</a>
+        </th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <!-- Table body -->
+    <tbody>
+    @foreach (var vehicleMake in Model.VehicleMakes)
+    {
+        <tr>
+            <td>@vehicleMake.Id</td>
+            <td>@vehicleMake.Name</td>
+            <td>@vehicleMake.Abrv</td>
+            <td>
+                <!-- Edit and Delete buttons -->
+                <a href="@Url.Action("Edit", new { id = vehicleMake.Id })">Edit</a>
+                <a href="@Url.Action("Delete", new { id = vehicleMake.Id })">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<div class="pagination">
+    @if (Model.TotalPages > 1)
+    {
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                @if (Model.CurrentPage > 1)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("Index", new { page = Model.CurrentPage - 1, searchString = Model.SearchString })">Previous</a>
+                    </li>
+                }
+                @for (var i = 1; i <= Model.TotalPages; i++)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("Index", new { page = i, searchString = Model.SearchString })" @(Model.CurrentPage == i ? "class=current" : "")>@i</a>
+                    </li>
+                }
+                @if (Model.CurrentPage < Model.TotalPages)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("Index", new { page = Model.CurrentPage + 1, searchString = Model.SearchString })">Next</a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    }
+
+</div>

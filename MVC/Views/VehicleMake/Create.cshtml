@@ -1,0 +1,22 @@
+@model Service.Models.VehicleMake
+
+<h2>Create Vehicle Make</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label for="Name">Name:</label>
+        <input type="text" asp-for="Name" id="Name" name="Name" class="form-control"/>
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Abrv">Abbreviation:</label>
+        <input type="text" asp-for="Abrv" id="Abrv" name="Abrv" class="form-control"/>
+        <span asp-validation-for="Abrv" class="text-danger"></span>
+    </div>
+
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Create</button>
+    </div>
+</form>
