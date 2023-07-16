@@ -6,6 +6,5 @@ public class VehicleModelListViewModel
         public int CurrentPage { get; set; }
         public int TotalPages { get; set; }
         public string SearchString { get; set; }
-        public VehicleModelCreateView VehicleModelCreateView { get; set; }
-    
+
 }

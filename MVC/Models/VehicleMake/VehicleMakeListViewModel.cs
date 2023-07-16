@@ -1,6 +1,6 @@
 using System.Collections;
 
-public class VehicleMakeListViewModel : IEnumerable
+public class VehicleMakeListViewModel 
 {
     public List<Service.Models.VehicleMake> VehicleMakes { get; set; }
     public int TotalVehicleMakes { get; set; }
@@ -8,8 +8,4 @@ public class VehicleMakeListViewModel : IEnumerable
     public int PageSize { get; set; }
     public int TotalPages { get; set; }
     public string SearchString { get; set; }
-    public IEnumerator GetEnumerator()
-    {
-        throw new NotImplementedException();
-    }
 }

@@ -52,7 +52,6 @@ public class VehicleMakeController : Controller
             return View(vehicleMake);
         }
         
-        // TODO refactor
         try
         {
             await _vehicleService.AddVehicleMakeAsync(vehicleMake);
